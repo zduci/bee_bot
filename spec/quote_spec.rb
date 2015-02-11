@@ -15,16 +15,19 @@ describe BeeBot::Quote do
     let(:non_quote_path) { "#{Dir.pwd}/spec/images/a_capybara.jpg" }
 
     it 'stores the path' do
+      BeeBot::QuoteValidator.should_receive(:valid?).with(quote_path).and_return true
       quote = BeeBot::Quote.from_path(quote_path)
       quote.path.should == quote_path
     end
 
     it 'extract a name from the filename' do
+      BeeBot::QuoteValidator.should_receive(:valid?).with(quote_path).and_return true
       quote = BeeBot::Quote.from_path(quote_path)
       quote.name.should == 'Nickname at school'
     end
 
     it 'validates the quote file' do
+      BeeBot::QuoteValidator.should_receive(:valid?).with(non_quote_path).and_return false
       expect { BeeBot::Quote.from_path(non_quote_path) }.to raise_error BeeBot::Quote::Invalid
     end
   end
