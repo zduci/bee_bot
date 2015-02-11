@@ -7,25 +7,29 @@ module BeeBot
 
     attr_reader :name, :path
 
-    def initialize(path)
-      validate_file(path)
+    def initialize(path, name)
       @path = path
-      @name = extract_name
+      @name = name
+    end
+
+    def self.from_path(path)
+      validate_file(path)
+      new(path, extract_name(path))
     end
 
     private
 
-    def validate_file(path)
+    def self.validate_file(path)
       raise Invalid unless File.exists?(path) && valid(path)
     end
 
-    def valid(path)
+    def self.valid(path)
       filename = File.basename(path)
       filename.start_with?(PREFIX) && filename.end_with?(EXTENSION)
     end
 
-    def extract_name
-      basename = File.basename(@path, EXTENSION)
+    def self.extract_name(path)
+      basename = File.basename(path, EXTENSION)
       basename = basename.gsub(/^#{PREFIX}/, '')
       basename = basename.gsub('_', ' ')
       basename.capitalize
