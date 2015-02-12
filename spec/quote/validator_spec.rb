@@ -1,4 +1,4 @@
-require_relative '../../lib/beebot/quote/validator'
+require_relative '../../lib/bee_bot/quote/validator'
 
 describe BeeBot::Quote::Validator do
   let(:quote_path) { "#{Dir.pwd}/spec/images/quote_nickname_at_school.png" }

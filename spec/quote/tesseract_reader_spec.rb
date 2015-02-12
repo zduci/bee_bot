@@ -1,5 +1,5 @@
-require_relative '../../lib/beebot/quote/tesseract_reader'
-require_relative '../../lib/beebot/quote/image'
+require_relative '../../lib/bee_bot/quote/tesseract_reader'
+require_relative '../../lib/bee_bot/quote/image'
 
 describe BeeBot::Quote::TesseractReader do
   let(:path) { 'a_quote.png' }
